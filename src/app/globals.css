@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brutal-bg: #f5f1eb;
+  --color-brutal-surface: #ffffff;
+  --color-brutal-ink: #1a1a1a;
+  --color-brutal-muted: #8b8680;
+  --color-brutal-accent: #ff6b35;
+  --color-brutal-yellow: #ffd166;
+  --color-brutal-border: #d1cfca;
+}
+
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
 }

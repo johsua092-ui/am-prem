@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "AM Premium Generator",
+  title: "Alight Motion Premium Generator | AM Premium",
   description:
     "Jadikan akun Alight Motion Anda premium selama 1 tahun secara gratis.",
 };
@@ -16,9 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body className="min-h-screen flex flex-col bg-gray-50 text-black">
+      <body className="min-h-screen flex flex-col bg-brutal-bg text-brutal-ink font-sans antialiased">
         <Header />
-        <main className="pt-16">{children}</main>
+        <main className="min-h-screen bg-brutal-bg selection:bg-brutal-accent selection:text-white pb-20">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
