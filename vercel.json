@@ -1,0 +1,13 @@
+{
+  "buildCommand": "next build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "env": {
+    "API_BASE_URL": "https://www.pakeaja.online",
+    "AM_SEND_MAGIC_LINK_PATH": "/api/tools/am-premium",
+    "NEXT_PUBLIC_SITE_NAME": "AM Premium Generator",
+    "NEXT_PUBLIC_SITE_DESCRIPTION": "Jadikan akun Alight Motion Anda premium selama 1 tahun secara gratis. Tanpa kata sandi dan dijamin aman 100%.",
+    "NEXT_PUBLIC_SITE_URL": "https://am-prem.vercel.app"
+  }
+}
