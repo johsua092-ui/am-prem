@@ -1,50 +1,46 @@
-const steps = [
-  {
-    number: "1",
-    title: "Kirim Request",
-    description:
-      "Masukkan email di form Step 1 lalu klik tombol 'Kirim Link Sekarang'.",
-  },
-  {
-    number: "2",
-    title: "Cari Email (Cek SPAM)",
-    description:
-      "Buka email kamu, cari email dari Alight Motion. Jika tidak ada di kotak masuk, wajib cek folder SPAM.",
-  },
-  {
-    number: "3",
-    title: "Salin Link",
-    description:
-      "Buka email tersebut, lalu salin (copy) link verifikasi login yang tertera di sana.",
-  },
-  {
-    number: "4",
-    title: "Verifikasi & Nikmati",
-    description:
-      "Tempelkan (paste) link tersebut di form Step 2 web ini dan klik Jadikan Premium. Done!",
-  },
-];
-
 export default function HowToUse() {
+  const steps = [
+    {
+      num: "1",
+      title: "Kirim Request",
+      desc: "Masukkan email di form Step 1 lalu klik tombol 'Kirim Link Sekarang'.",
+    },
+    {
+      num: "2",
+      title: "Cari Email (Cek SPAM)",
+      desc: "Buka email kamu, cari email dari Alight Motion. Jika tidak ada di kotak masuk, wajib cek folder SPAM.",
+    },
+    {
+      num: "3",
+      title: "Salin Link",
+      desc: "Buka email tersebut, lalu salin (copy) link verifikasi login yang tertera di sana.",
+    },
+    {
+      num: "4",
+      title: "Verifikasi & Nikmati",
+      desc: "Tempelkan (paste) link tersebut di form Step 2 web ini dan klik Jadikan Premium. Done!",
+    },
+  ];
+
   return (
     <section className="mb-16">
-      <h2 className="text-2xl font-bold text-white text-center mb-10">
+      <h2 className="text-2xl font-black uppercase tracking-widest text-black mb-12 text-center">
         How To Use
       </h2>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {steps.map((step) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map((s) => (
           <div
-            key={step.number}
-            className="bg-white/[0.03] border border-white/5 rounded-2xl p-6 text-center relative group hover:border-white/10 transition-colors"
+            key={s.num}
+            className="bg-gray-50 border-2 border-gray-300 p-8 shadow-[4px_4px_0px_rgba(15,23,42,0.1)] relative hover:-translate-y-1 transition-transform"
           >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm mx-auto mb-4 group-hover:scale-110 transition-transform">
-              {step.number}
+            <div className="absolute -top-5 -left-5 w-10 h-10 bg-yellow-300 border-2 border-black rounded-full flex items-center justify-center font-black text-lg shadow-[3px_3px_0px_rgba(15,23,42,1)]">
+              {s.num}
             </div>
-            <h3 className="text-white font-semibold text-base mb-2">
-              {step.title}
+            <h3 className="text-lg font-black uppercase text-black mb-3 mt-2">
+              {s.title}
             </h3>
-            <p className="text-gray-400 text-xs leading-relaxed">
-              {step.description}
+            <p className="text-sm font-medium text-gray-600 leading-relaxed">
+              {s.desc}
             </p>
           </div>
         ))}

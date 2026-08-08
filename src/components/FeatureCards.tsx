@@ -1,52 +1,49 @@
-import { ShieldCheck, Clock, Sparkles } from "lucide-react";
-
-const features = [
-  {
-    icon: ShieldCheck,
-    title: "Tanpa Password",
-    description:
-      "Tidak butuh password email atau Google kamu. Kami menggunakan sistem magic link verifikasi resmi dari pusat.",
-    gradient: "from-blue-500 to-cyan-500",
-  },
-  {
-    icon: Clock,
-    title: "Instan 1 Tahun",
-    description:
-      "Begitu sukses verifikasi, akun Alight Motion kamu langsung aktif status Premium selama 1 Tahun penuh.",
-    gradient: "from-purple-500 to-pink-500",
-  },
-  {
-    icon: Sparkles,
-    title: "Sepenuhnya Gratis",
-    description:
-      "Tidak dipungut biaya apapun. Proses ini 100% gratis disediakan untuk eksperimen.",
-    gradient: "from-orange-500 to-yellow-500",
-  },
-];
-
 export default function FeatureCards() {
+  const features = [
+    {
+      title: "Tanpa Password",
+      desc: "Tidak butuh password email atau Google kamu. Kami menggunakan sistem magic link verifikasi resmi dari pusat.",
+    },
+    {
+      title: "Instan 1 Tahun",
+      desc: "Begitu sukses verifikasi, akun Alight Motion kamu langsung aktif status Premium selama 1 Tahun penuh.",
+    },
+    {
+      title: "Sepenuhnya Gratis",
+      desc: "Tidak dipungut biaya apapun. Proses ini 100% gratis disediakan untuk eksperimen.",
+    },
+  ];
+
   return (
     <section className="mb-16">
-      <h2 className="text-2xl font-bold text-white text-center mb-10">
+      <h2 className="text-2xl font-black uppercase tracking-widest text-black mb-12 text-center">
         Key Features
       </h2>
-      <div className="grid md:grid-cols-3 gap-6">
-        {features.map((feature) => (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {features.map((f) => (
           <div
-            key={feature.title}
-            className="bg-white/[0.03] border border-white/5 rounded-2xl p-6 hover:border-white/10 transition-colors group"
+            key={f.title}
+            className="bg-gray-50 border-2 border-gray-300 p-6 flex flex-col items-center text-center shadow-[4px_4px_0px_rgba(15,23,42,0.1)] hover:shadow-[6px_6px_0px_rgba(15,23,42,0.15)] transition-all"
           >
-            <div
-              className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
-            >
-              <feature.icon className="w-6 h-6 text-white" />
+            <div className="w-14 h-14 bg-white border-2 border-gray-300 rounded-xl flex items-center justify-center text-black mb-6">
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                />
+              </svg>
             </div>
-            <h3 className="text-white font-semibold text-lg mb-2">
-              {feature.title}
+            <h3 className="text-md font-black uppercase text-black mb-3">
+              {f.title}
             </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              {feature.description}
-            </p>
+            <p className="text-sm font-medium text-gray-600">{f.desc}</p>
           </div>
         ))}
       </div>

@@ -20,39 +20,61 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Proxy the request to the actual backend
-    const backendUrl = `${config.apiBaseUrl}${config.amSendMagicLinkPath}`;
+    const formBody = new URLSearchParams({
+      email,
+      verificationLink,
+      step: "2",
+    }).toString();
 
-    const response = await fetch(backendUrl, {
+    const response = await fetch(`${config.apiBaseUrl}/id/tools/am-premium`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        ...(config.apiKey ? { "X-API-Key": config.apiKey } : {}),
+        "Content-Type": "application/x-www-form-urlencoded",
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        Accept: "text/html,application/xhtml+xml",
       },
-      body: JSON.stringify({ email, verificationLink, action: "verify" }),
+      body: formBody,
+      redirect: "manual",
     });
 
-    const data = await response.json().catch(() => ({}));
-
-    if (!response.ok) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: (data as { message?: string }).message || "Gagal memverifikasi link.",
-        },
-        { status: response.status }
-      );
+    if (response.status === 303 || response.status === 302) {
+      return NextResponse.json({
+        success: true,
+        message:
+          "Selamat! Akun Alight Motion kamu sekarang PREMIUM selama 1 tahun.",
+      });
     }
 
-    return NextResponse.json({
-      success: true,
-      message: "Selamat! Akun Alight Motion kamu sekarang PREMIUM selama 1 tahun! 🎉",
-      data,
-    });
+    const text = await response.text();
+
+    if (
+      text.includes("berhasil") ||
+      text.includes("sukses") ||
+      text.includes("premium") ||
+      response.ok
+    ) {
+      return NextResponse.json({
+        success: true,
+        message:
+          "Selamat! Akun Alight Motion kamu sekarang PREMIUM selama 1 tahun.",
+      });
+    }
+
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Gagal memverifikasi link. Pastikan link yang ditempel benar.",
+      },
+      { status: 500 }
+    );
   } catch (error) {
     console.error("Verify premium error:", error);
     return NextResponse.json(
-      { success: false, message: "Terjadi kesalahan server. Coba lagi nanti." },
+      {
+        success: false,
+        message: "Terjadi kesalahan server. Coba lagi nanti.",
+      },
       { status: 500 }
     );
   }

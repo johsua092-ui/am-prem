@@ -13,39 +13,61 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Proxy the request to the actual backend
-    const backendUrl = `${config.apiBaseUrl}${config.amSendMagicLinkPath}`;
+    // POST ke halaman yang sama seperti form asli (Next.js server action)
+    // Format: application/x-www-form-urlencoded
+    const formBody = new URLSearchParams({ email }).toString();
 
-    const response = await fetch(backendUrl, {
+    const response = await fetch(`${config.apiBaseUrl}/id/tools/am-premium`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        ...(config.apiKey ? { "X-API-Key": config.apiKey } : {}),
+        "Content-Type": "application/x-www-form-urlencoded",
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        Accept: "text/html,application/xhtml+xml",
       },
-      body: JSON.stringify({ email }),
+      body: formBody,
+      redirect: "manual",
     });
 
-    const data = await response.json().catch(() => ({}));
-
-    if (!response.ok) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: (data as { message?: string }).message || "Gagal mengirim link verifikasi.",
-        },
-        { status: response.status }
-      );
+    // Next.js server action biasanya redirect setelah sukses (303)
+    // atau return HTML dengan toast message
+    if (response.status === 303 || response.status === 302) {
+      return NextResponse.json({
+        success: true,
+        message:
+          "Link verifikasi berhasil dikirim. Silakan cek folder SPAM atau INBOX di email kamu.",
+      });
     }
 
-    return NextResponse.json({
-      success: true,
-      message: "Link verifikasi berhasil dikirim! Silakan cek folder SPAM atau INBOX di email kamu.",
-      data,
-    });
+    const text = await response.text();
+
+    // Cek indikasi sukses di response HTML
+    if (
+      text.includes("berhasil") ||
+      text.includes("sukses") ||
+      response.ok
+    ) {
+      return NextResponse.json({
+        success: true,
+        message:
+          "Link verifikasi berhasil dikirim. Silakan cek folder SPAM atau INBOX di email kamu.",
+      });
+    }
+
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Gagal mengirim link verifikasi. Coba lagi nanti.",
+      },
+      { status: 500 }
+    );
   } catch (error) {
     console.error("Send magic link error:", error);
     return NextResponse.json(
-      { success: false, message: "Terjadi kesalahan server. Coba lagi nanti." },
+      {
+        success: false,
+        message: "Terjadi kesalahan server. Coba lagi nanti.",
+      },
       { status: 500 }
     );
   }

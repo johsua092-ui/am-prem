@@ -1,26 +1,38 @@
 export default function Disclaimer() {
   return (
-    <div className="bg-gradient-to-r from-pink-500/10 to-orange-500/10 border border-pink-500/20 rounded-xl p-5 mb-8">
-      <div className="flex items-start gap-3">
-        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-pink-500/30 flex items-center justify-center mt-0.5">
-          <span className="text-pink-400 text-xs">!</span>
+    <div className="mb-10 p-6 border-3 border-black rounded-xl bg-red-200 shadow-[6px_6px_0px_rgba(15,23,42,1)]">
+      <div className="flex items-start gap-4">
+        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0 border-2 border-black">
+          <svg
+            className="w-6 h-6 text-red-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="3"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+            />
+          </svg>
         </div>
         <div>
-          <h3 className="text-white font-semibold text-sm mb-2">
-            Peringatan &amp; Disclaimer (Wajib Baca)
+          <h3 className="text-xl font-black text-black uppercase mb-2 tracking-wide">
+            Peringatan & Disclaimer (Wajib Baca)
           </h3>
-          <p className="text-gray-400 text-sm leading-relaxed">
+          <p className="text-black font-medium leading-relaxed">
             Fitur ini disediakan{" "}
-            <strong className="text-gray-300">hanya untuk tujuan edukasi &amp; eksperimen</strong>
-            , bukan merupakan layanan resmi dari Alight Motion. Segala risiko penggunaan menjadi
-            tanggung jawab pribadi pengguna sepenuhnya.
-          </p>
-          <p className="text-gray-400 text-sm leading-relaxed mt-2">
-            <strong className="text-gray-300">Keamanan Terjamin 100% Aman:</strong> Proses ini{" "}
-            <strong className="text-gray-300">TIDAK AKAN</strong> membocorkan privasi kamu, tidak
-            akan meminta password email, tidak dapat mengambil alih akun Google/Email kamu. Kami hanya
-            memanfaatkan link <em className="text-gray-300">magic login</em> resmi yang di-generate
-            via API. Data kamu aman dan tidak ada celah keamanan.
+            <strong>hanya untuk tujuan edukasi & eksperimen</strong>, bukan
+            merupakan layanan resmi dari Alight Motion. Segala risiko penggunaan
+            menjadi tanggung jawab pribadi pengguna sepenuhnya.
+            <br />
+            <br />
+            <strong>Keamanan Terjamin 100% Aman:</strong> Proses ini{" "}
+            <strong>TIDAK AKAN</strong> membocorkan privasi kamu, tidak akan
+            meminta password email, tidak dapat mengambil alih akun Google/Email
+            kamu. Kami hanya memanfaatkan link <em>magic login</em> resmi yang
+            di-generate via API. Data kamu aman dan tidak ada celah keamanan.
           </p>
         </div>
       </div>

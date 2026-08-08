@@ -2,98 +2,78 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/90 backdrop-blur-md border-b border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b-2 border-black">
+      <div className="max-w-7xl mx-auto px-5 md:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm group-hover:scale-105 transition-transform">
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="w-9 h-9 border-2 border-black flex items-center justify-center font-black text-sm bg-black text-white">
               AM
             </div>
-            <span className="text-white font-bold text-lg hidden sm:block">
+            <span className="text-black font-bold text-lg hidden sm:block tracking-tight">
               AM Premium
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6">
-            <Link
-              href="/"
-              className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
-            >
-              TOOLS
-            </Link>
-            <Link
-              href="/"
-              className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
-            >
-              STATISTIK
-            </Link>
-            <Link
-              href="/"
-              className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
-            >
-              FITUR
-            </Link>
-            <Link
-              href="/"
-              className="text-gray-400 hover:text-white transition-colors text-sm font-medium"
-            >
-              TANYA JAWAB
-            </Link>
-            <div className="flex items-center gap-1 ml-4">
-              <button className="text-sm text-gray-400 hover:text-white transition-colors px-1">
+          <nav className="hidden lg:flex items-center gap-6">
+            {["TOOLS", "STATISTIK", "FITUR", "TANYA JAWAB"].map((item) => (
+              <Link
+                key={item}
+                href="/"
+                className="text-sm font-bold text-gray-600 hover:text-black uppercase tracking-wide"
+              >
+                {item}
+              </Link>
+            ))}
+            <div className="flex items-center gap-1 border-2 border-black rounded-lg overflow-hidden ml-4">
+              <button className="px-3 py-1.5 text-xs font-bold bg-white text-black">
                 EN
               </button>
-              <span className="text-gray-600">|</span>
-              <button className="text-sm text-gray-400 hover:text-white transition-colors px-1">
+              <div className="w-[2px] bg-black h-full" />
+              <button className="px-3 py-1.5 text-xs font-bold bg-black text-white">
                 ID
               </button>
             </div>
             <Link
               href="/"
-              className="ml-4 px-5 py-2 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+              className="hidden sm:inline-flex items-center justify-center bg-orange-500 text-white px-5 py-2.5 text-sm font-bold border-2 border-black shadow-[4px_4px_0px_rgba(15,23,42,1)] hover:translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_rgba(15,23,42,1)] transition-all uppercase tracking-wide"
             >
               Coba Tools
             </Link>
           </nav>
 
-          {/* Mobile menu button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-gray-400 hover:text-white"
+            className="lg:hidden w-10 h-10 flex items-center justify-center border-2 border-black"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <div className="w-5 flex flex-col gap-1.5">
+              <span className="block h-0.5 w-full bg-black" />
+              <span className="block h-0.5 w-full bg-black" />
+              <span className="block h-0.5 w-full bg-black" />
+            </div>
           </button>
         </div>
 
-        {/* Mobile Nav */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-white/5">
+          <div className="lg:hidden py-4 border-t-2 border-black">
             <nav className="flex flex-col gap-3">
               {["TOOLS", "STATISTIK", "FITUR", "TANYA JAWAB"].map((item) => (
                 <Link
                   key={item}
                   href="/"
-                  className="text-gray-400 hover:text-white transition-colors text-sm font-medium py-1"
+                  className="text-sm font-bold text-gray-600 uppercase tracking-wide py-1"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {item}
                 </Link>
               ))}
-              <div className="flex items-center gap-1 pt-2">
-                <button className="text-sm text-gray-400 hover:text-white px-1">EN</button>
-                <span className="text-gray-600">|</span>
-                <button className="text-sm text-gray-400 hover:text-white px-1">ID</button>
-              </div>
               <Link
                 href="/"
-                className="mt-2 px-5 py-2 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-full text-sm font-medium text-center hover:opacity-90 transition-opacity"
+                className="mt-2 bg-orange-500 text-white px-5 py-2.5 text-sm font-bold border-2 border-black shadow-[4px_4px_0px_rgba(15,23,42,1)] uppercase tracking-wide text-center"
               >
                 Coba Tools
               </Link>

@@ -1,33 +1,31 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center px-4">
       <div className="text-center max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-orange-500/10 to-pink-500/10 border border-orange-500/20 mb-8">
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-sm text-gray-300">Tools Gratis &amp; Aman</span>
+        <div className="inline-block px-4 py-1.5 mb-6 bg-yellow-300 border-2 border-black rounded-full text-xs font-black uppercase tracking-widest shadow-[3px_3px_0px_rgba(15,23,42,1)]">
+          Tools Gratis
         </div>
 
-        <h1 className="text-4xl sm:text-6xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-4xl sm:text-6xl font-black text-black mb-6 leading-tight uppercase tracking-tight">
           Alight Motion{" "}
-          <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
-            Premium Generator
-          </span>
+          <span className="text-orange-500">Premium Generator</span>
         </h1>
 
-        <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
+        <p className="text-gray-600 text-lg mb-10 max-w-xl mx-auto font-medium">
           Jadikan akun Alight Motion Anda premium selama 1 tahun secara gratis.
           Tanpa kata sandi dan dijamin aman 100%.
         </p>
 
         <Link
           href="/tools/am-premium"
-          className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-full font-semibold text-base hover:opacity-90 transition-opacity shadow-lg shadow-orange-500/25"
+          className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 text-white border-3 border-black text-lg font-black uppercase tracking-widest shadow-[6px_6px_0px_rgba(15,23,42,1)] hover:translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0px_rgba(15,23,42,1)] transition-all"
         >
           Mulai Sekarang
-          <ArrowRight className="w-5 h-5" />
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" strokeWidth="3" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
         </Link>
       </div>
     </div>
